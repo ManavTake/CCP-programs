@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top = -1;
+
+void push(int data) {
+    if (top >= MAX_SIZE - 1) {
+        printf("Stack Overflow\n");
+        return;
+    }
+    stack[++top] = data;
+}
+
+int pop() {
+    if (top < 0) {
+        printf("Stack Underflow\n");
+        return -1;
+    }
+    return stack[top--];
+}
+
+void removeDuplicates() {
+    int prev = -1;
+    int temp[MAX_SIZE];
+    int tempTop = -1;
+    while (top >= 0) {
+        int curr = pop();
+        if (curr != prev) {
+            temp[++tempTop] = curr;
+        }
+        prev = curr;
+    }
+
+    while (tempTop >= 0) {
+        push(temp[tempTop--]);
+    }
+}
+
+int main() {
+    // Push some data to stack
+    push(10);
+    push(10);
+    push(20);
+    push(20);
+    push(30);
+    push(30);
+    push(30);
+    push(40);
+    push(50);
+
+    // Remove duplicates from stack
+    removeDuplicates();
+
+    // Print the elements of stack
+    int i;
+    for (i = 0; i <= top; i++) {
+        printf("%d ", stack[i]);
+    }
+}

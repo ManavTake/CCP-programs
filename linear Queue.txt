@@ -1,0 +1,66 @@
+#include <stdio.h>
+#define QSIZE 5
+
+void insert_rear(int q[], int item, int *r)
+{
+    if(*r==QSIZE-1)
+    printf("Queue Overflow\n");
+    else
+    {
+        (*r)++;
+        q[*r]=item;
+    }
+}
+
+int delete_front(int q[], int *f, int *r)
+{
+    if(*f>*r)z
+    printf("Queue Underflow\n");
+    else{
+    return q[(*f)++];   //return(q[(*f)++]);
+    }
+}
+
+void display(int q[], int *f, int *r)
+{
+    int i;
+    if(*f>*r)
+    printf("Queue is empty\n");
+    else
+    {
+        for(i=*f;i<=*r;i++)
+        printf("%d",q[i]);
+    }
+}
+
+int main()
+{
+   int op,item,st[10],val;
+   int rear=-1;
+   int front=0;
+    while(1)
+    {
+        printf("\nEnter the operation\n 1.Insert  2.Delete  3. Display\n");
+        scanf("%d", &op);
+        
+        switch(op)
+        {
+            case 1: printf("Enter the number : ");
+                    scanf("%d", &item);
+                    insert_rear(st, item , &rear);
+                    break;
+                    
+            case 2: val=delete_front(st,&front,&rear);
+                    printf("The value deleted is :%d",val);
+                    break;
+                   
+            case 3: display(st,&front,&rear);
+                    break;
+                    
+            default: printf("Invalid input\n\n");        
+                     break;   
+        }
+    }
+    
+    return 0;
+}
